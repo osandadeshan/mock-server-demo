@@ -1,0 +1,22 @@
+[
+    {
+        "status": [
+            "Completed"
+        ],
+        "_id": "5e8c87869c7718ab4cea35f3",
+        "name": "Mock service implementation using Express",
+        "category": "NodeJS",
+        "createdDate": "2020-04-07T14:00:38.671Z",
+        "__v": 0
+    },
+    {
+        "status": [
+            "In Progress"
+        ],
+        "_id": "5e8c87869c7718ab4cea35f2",
+        "name": "JavaScript demo project implementation",
+        "category": "JavaScript",
+        "createdDate": "2020-04-06T14:00:38.671Z",
+        "__v": 0
+    }
+]
