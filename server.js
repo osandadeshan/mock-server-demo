@@ -2,9 +2,11 @@ const express = require('express')
 const bodyParser = require('body-parser');
 const healthCheck = require('express-healthcheck')
 var requireHeader = require('require-header');
+
 const app = express();
 app.use(bodyParser.json());
 const port = process.env.PORT || 3000;
+
 const authHeaderName = "Authorization";
 const authHeaderValue = "Bearer 5aa8220420419fd5890bb88a1767ed7cb1abc4412024bfff91513a40d6e19823";
 const appHeaderName = "App-Name";
@@ -24,6 +26,23 @@ app.get('/auth', (req, res) => {
     res.json(require('./json_data/authResponse.json'));
 })
 
+// Returning response with 404 when incorrect url is requested 
+app.use(function (req, res) {
+    res.status(404).send({
+        error: {
+            errors: [{
+                domain: 'global',
+                reason: 'notFound',
+                message: 'Not Found',
+                description: 'Couldn\'t find the requested resource \'' + req.originalUrl + '\''
+            }],
+            code: 404,
+            message: 'Not Found'
+        }
+    })
+});
+
+// Set mandatory headers for the APIs
 app.use(requireHeader(authHeaderName));
 app.use(requireHeader(appHeaderName));
 
@@ -43,6 +62,7 @@ app.post('/tasks', (req, res) => {
     }
 })
 
+// Send error message as the API response
 app.use((err, req, res, next) => {
     res.status(err.status || 500).send({
         message: err.message
