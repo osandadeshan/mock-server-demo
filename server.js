@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser');
 const healthCheck = require('express-healthcheck')
 var requireHeader = require('require-header');
+const _ = require('lodash');
 
 const app = express();
 app.use(bodyParser.json());
@@ -51,13 +52,13 @@ app.post('/tasks', (req, res) => {
     if (req.header(authHeaderName) == authHeaderValue &&
         req.header(appNameHeaderName) == appNameHeaderValue &&
         req.header(organizationHeaderName) == organizationHeaderValue) {
-        if (req.body == require('./json_data/taskRequest.json')) {
+        if (_.isEqual(req.body, require('./json_data/taskRequest.json'))) {
             res.status(201).json({
                 message: 'Task has created successfully'
             });
         } else {
             res.status(400).send({
-                message: "Invalid JSON request body"
+                message: "JSON request body is not accepted"
             });
         }
 
