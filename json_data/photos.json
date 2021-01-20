@@ -13,5 +13,10 @@
         "_id": "3",
         "name": "Third photo",
         "url": "https://maxsoft-mock-server-demo.web.app/photos/3"
+    },
+    {
+        "_id": "4",
+        "name": "Get all tasks with auth header",
+        "url": "https://intelliapi-mockserver.herokuapp.com/tasks"
     }
 ]
