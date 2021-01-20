@@ -69,6 +69,19 @@ app.post('/tasks', (req, res) => {
     }
 })
 
+// GET photos URLs
+app.get('/photos', (req, res) => {
+    if (req.header(authHeaderName) == authHeaderValue &&
+        req.header(appNameHeaderName) == appNameHeaderValue &&
+        req.header(organizationHeaderName) == organizationHeaderValue) {
+        res.json(require('./json_data/photos.json'));
+    } else {
+        res.status(400).send({
+            message: "Invalid header(s)"
+        });
+    }
+})
+
 // Send error message as the API response
 app.use((err, req, res, next) => {
     res.status(err.status || 500).send({

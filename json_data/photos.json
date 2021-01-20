@@ -1,0 +1,17 @@
+[
+    {
+        "_id": "1",
+        "name": "First photo",
+        "url": "https://maxsoft-mock-server-demo.web.app/photos/1"
+    },
+    {
+        "_id": "2",
+        "name": "Second photo",
+        "url": "https://maxsoft-mock-server-demo.web.app/photos/2"
+    },
+    {
+        "_id": "3",
+        "name": "Third photo",
+        "url": "https://maxsoft-mock-server-demo.web.app/photos/3"
+    }
+]
