@@ -69,6 +69,28 @@ app.post('/tasks', (req, res) => {
     }
 })
 
+// PATCH a task
+app.patch('/tasks', (req, res) => {
+    if (req.header(authHeaderName) == authHeaderValue &&
+        req.header(appNameHeaderName) == appNameHeaderValue &&
+        req.header(organizationHeaderName) == organizationHeaderValue) {
+        if (_.isEqual(req.body, require('./json_data/taskPatchRequest.json'))) {
+            res.status(200).json({
+                message: 'Task has updated successfully'
+            });
+        } else {
+            res.status(400).send({
+                message: "JSON request body is not accepted"
+            });
+        }
+
+    } else {
+        res.status(400).send({
+            message: "Invalid header(s)"
+        });
+    }
+})
+
 // GET photos URLs
 app.get('/photos', (req, res) => {
     if (req.header(authHeaderName) == authHeaderValue &&
